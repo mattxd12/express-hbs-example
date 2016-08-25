@@ -1,9 +1,12 @@
+require('dotenv').config();
+
 const express = require('express');
 const hbs = require('hbs');
 const locals = require('./locals.js');
 
+
 let app = express();
-var port = 3000;
+const port = process.env.PORT;
 
 app.set('view engine', 'hbs');
 hbs.localsAsTemplateData(app);
@@ -25,6 +28,12 @@ app.get('/page2', (req,res)=> {
   res.render("page2");
 });
 
+app.get('/page3', (req,res)=> {
+  res.render("page3");
+});
+
+console.log(process.env);
+
 app.listen(port, () => {
-  console.log('Listening on port 3000!');
+  console.log("Listening on port "+port+'!');
 });
